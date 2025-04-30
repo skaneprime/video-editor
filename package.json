@@ -1,0 +1,43 @@
+{
+  "name": "video-editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@remotion/bundler": "4.0.293",
+    "@remotion/cli": "4.0.293",
+    "@remotion/google-fonts": "4.0.293",
+    "@remotion/lambda": "4.0.293",
+    "@remotion/paths": "4.0.293",
+    "@remotion/player": "4.0.293",
+    "@remotion/shapes": "4.0.293",
+    "next": "15.2.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.293",
+    "zod": "3.22.3"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.293",
+    "@remotion/eslint-plugin": "4.0.293",
+    "@types/node": "20.12.14",
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "@types/web": "0.0.166",
+    "dotenv": "16.0.3",
+    "eslint": "9.19.0",
+    "@next/eslint-plugin-next": "15.1.6",
+    "eslint-config-next": "15.1.6",
+    "typescript": "5.8.2",
+    "prettier": "3.3.3",
+    "@eslint/eslintrc": "3.1.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "remotion": "remotion studio",
+    "render": "remotion render",
+    "deploy": "node deploy.mjs"
+  }
+}
