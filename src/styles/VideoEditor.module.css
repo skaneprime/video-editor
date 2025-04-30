@@ -1,0 +1,60 @@
+.editorContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.previewArea {
+  flex: 1;
+  min-height: 0;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.timelineContainer {
+  height: 200px;
+  background-color: #2a2a2a;
+  border-top: 1px solid #3a3a3a;
+}
+
+.controlsContainer {
+  height: 60px;
+  background-color: #2a2a2a;
+  border-top: 1px solid #3a3a3a;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.exportOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.exportProgress {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  color: white;
+}
+
+.progressBar {
+  height: 4px;
+  background-color: #4a90e2;
+  margin-top: 10px;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+} 

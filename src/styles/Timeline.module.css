@@ -1,0 +1,218 @@
+.timeline {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #2a2a2a;
+  overflow: hidden;
+  cursor: pointer;
+  border-top: 1px solid #333;
+}
+
+.timeMarkers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
+}
+
+.timeMarker {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background-color: #333;
+}
+
+.timeLabel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+  padding-top: 4px;
+}
+
+.timeIndicator {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #ff0000;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tracks {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.track {
+  position: relative;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+}
+
+.clip {
+  position: absolute;
+  height: 100%;
+  background-color: #4a90e2;
+  border-radius: 2px;
+  cursor: move;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  font-size: 12px;
+  padding: 1px;
+  box-sizing: border-box;
+  min-width: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.clip:hover {
+  background-color: #357abd;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.clip:active {
+  background-color: #2d6da3;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.clipContent {
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.trimHandle {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: ew-resize;
+  z-index: 2;
+  transition: background-color 0.2s;
+}
+
+.trimHandle:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.trimHandle:active {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.trimHandle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 1px;
+}
+
+.contextMenu {
+  position: fixed;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.contextMenu button {
+  width: 100%;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.contextMenu button:hover {
+  background-color: #3a3a3a;
+}
+
+.contextMenu button:active {
+  background-color: #4a4a4a;
+}
+
+.playhead {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #ff0000;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.volumeControl {
+  padding: 8px 16px;
+  border-bottom: 1px solid #444;
+}
+
+.volumeControl label {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.volumeSlider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  background: #444;
+  border-radius: 2px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.volumeSlider:hover {
+  opacity: 1;
+}
+
+.volumeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.volumeSlider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+} 
