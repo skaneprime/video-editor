@@ -1,3 +1,4 @@
+/* eslint-disable @remotion/volume-callback */
 import React from 'react';
 import { AbsoluteFill, Audio, Video, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { VideoClip, AudioClip, TextOverlay } from '../types';
@@ -14,8 +15,8 @@ export const RemotionVideo: React.FC<RemotionVideoProps> = ({
   videoClips,
   audioClips,
   textOverlays,
-  canvasWidth,
-  canvasHeight,
+  // canvasWidth,
+  // canvasHeight,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();

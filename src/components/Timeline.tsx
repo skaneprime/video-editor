@@ -69,7 +69,10 @@ export const Timeline: React.FC<TimelineProps> = ({
     setDragType(type);
     setIsDragging(true);
     setInitialStartTime(clip.startTime);
-    setInitialDuration(clip.duration);
+    if(clip.type === 'video') {
+      setInitialDuration(clip.trimStart - clip.startTime + clip.trimEnd - clip.trimStart);
+    }
+    
     if (timelineRef.current) {
       const rect = timelineRef.current.getBoundingClientRect();
       setInitialMouseX(e.clientX - rect.left);
@@ -164,7 +167,7 @@ export const Timeline: React.FC<TimelineProps> = ({
   const renderClip = (clip: Clip, type: 'video' | 'text' | 'audio') => {
     const style = {
       left: `${(clip.startTime / 60) * 100}%`,
-      width: `${(clip.duration / 60) * 100}%`,
+      width: `${(clip.type === "video" ? ((clip.trimStart - clip.startTime + clip.trimEnd - clip.trimStart) / 60) : 0) * 100}%`,
     };
 
     return (

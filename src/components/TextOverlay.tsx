@@ -12,8 +12,8 @@ export const TextOverlay: React.FC<TextOverlayProps> = ({
   text,
   color,
   position,
-  startTime,
-  duration,
+  // startTime,
+  // duration,
   onUpdate,
   onDelete,
 }) => {
