@@ -69,9 +69,7 @@ export const Timeline: React.FC<TimelineProps> = ({
     setDragType(type);
     setIsDragging(true);
     setInitialStartTime(clip.startTime);
-    if(clip.type === 'video') {
-      setInitialDuration(clip.trimStart - clip.startTime + clip.trimEnd - clip.trimStart);
-    }
+    setInitialDuration(clip.duration);
     
     if (timelineRef.current) {
       const rect = timelineRef.current.getBoundingClientRect();
@@ -91,39 +89,22 @@ export const Timeline: React.FC<TimelineProps> = ({
     if (dragType === 'start') {
       const newStartTime = Math.max(0, Math.min(initialStartTime + timeDelta, initialStartTime + initialDuration - 1));
       const newDuration = initialDuration - (newStartTime - initialStartTime);
-      if (selectedClip.type === 'video') {
-        const videoClip = selectedClip as VideoClip;
-        const trimDelta = newStartTime - initialStartTime;
-        const newTrimStart = videoClip.trimStart + trimDelta;
-        onClipUpdate(selectedClip.id, 'video', {
-          startTime: newStartTime,
-          duration: newDuration,
-          trimStart: newTrimStart
-        });
-      } else {
-        onClipUpdate(selectedClip.id, selectedClip.type, {
-          startTime: newStartTime,
-          duration: newDuration
-        });
-      }
+      
+      onClipUpdate(selectedClip.id, selectedClip.type, {
+        startTime: newStartTime,
+        duration: newDuration
+      });
     } else if (dragType === 'end') {
       const newDuration = Math.max(1, Math.min(initialDuration + timeDelta, 60 - initialStartTime));
-      if (selectedClip.type === 'video') {
-        const videoClip = selectedClip as VideoClip;
-        const trimDelta = newDuration - initialDuration;
-        const newTrimEnd = videoClip.trimEnd + trimDelta;
-        onClipUpdate(selectedClip.id, 'video', {
-          duration: newDuration,
-          trimEnd: newTrimEnd
-        });
-      } else {
-        onClipUpdate(selectedClip.id, selectedClip.type, {
-          duration: newDuration
-        });
-      }
+      
+      onClipUpdate(selectedClip.id, selectedClip.type, {
+        duration: newDuration
+      });
     } else if (dragType === 'move') {
       const newStartTime = Math.max(0, Math.min(initialStartTime + timeDelta, 60 - initialDuration));
-      onClipUpdate(selectedClip.id, selectedClip.type, { startTime: newStartTime });
+      onClipUpdate(selectedClip.id, selectedClip.type, {
+        startTime: newStartTime
+      });
     }
   };
 
@@ -167,7 +148,7 @@ export const Timeline: React.FC<TimelineProps> = ({
   const renderClip = (clip: Clip, type: 'video' | 'text' | 'audio') => {
     const style = {
       left: `${(clip.startTime / 60) * 100}%`,
-      width: `${(clip.type === "video" ? ((clip.trimStart - clip.startTime + clip.trimEnd - clip.trimStart) / 60) : 0) * 100}%`,
+      width: `${(clip.duration / 60) * 100}%`,
     };
 
     return (

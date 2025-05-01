@@ -25,7 +25,7 @@ export const RemotionVideo: React.FC<RemotionVideoProps> = ({
     <AbsoluteFill style={{ background: 'black' }}>
       {videoClips.map((clip) => {
         const startFrame = Math.round(clip.startTime * fps);
-        const endFrame = Math.round((clip.startTime + clip.duration) * fps);
+        const endFrame = Math.round((clip.endTime - clip.startTime) * fps);
         const isVisible = frame >= startFrame && frame <= endFrame;
 
         if (!isVisible) return null;
@@ -53,7 +53,7 @@ export const RemotionVideo: React.FC<RemotionVideoProps> = ({
 
       {audioClips.map((clip) => {
         const startFrame = Math.round(clip.startTime * fps);
-        const endFrame = Math.round((clip.startTime + clip.duration) * fps);
+        const endFrame = Math.round((clip.endTime - clip.startTime) * fps);
 
         return (
           <Audio

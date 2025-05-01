@@ -1,5 +1,5 @@
-import { Composition, Video, Audio, AbsoluteFill } from 'remotion';
-import { VideoClip, AudioClip, TextOverlay } from './types';
+import { Composition, Video, Audio, AbsoluteFill } from "remotion";
+import { VideoClip, AudioClip, TextOverlay } from "./types";
 
 export interface RemotionVideoProps {
   videoClips: VideoClip[];
@@ -13,7 +13,7 @@ export const RemotionVideo = ({
   textOverlays = [],
 }: RemotionVideoProps) => {
   return (
-    <AbsoluteFill style={{ backgroundColor: 'black' }}>
+    <AbsoluteFill style={{ backgroundColor: "black" }}>
       {/* Video Clips */}
       {videoClips.map((clip) => (
         <Video
@@ -23,11 +23,11 @@ export const RemotionVideo = ({
           endAt={clip.endTime}
           volume={clip.volume}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
+            width: "100%",
+            height: "100%",
           }}
         />
       ))}
@@ -48,17 +48,17 @@ export const RemotionVideo = ({
         <div
           key={overlay.id}
           style={{
-            position: 'absolute',
+            position: "absolute",
             left: `${overlay.position.x}%`,
             top: `${overlay.position.y}%`,
-            transform: 'translate(-50%, -50%)',
+            transform: "translate(-50%, -50%)",
             color: overlay.color,
-            fontFamily: 'Arial',
-            fontSize: '48px',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            WebkitTextStroke: '2px black',
-            textShadow: '2px 2px 0 #000',
+            fontFamily: "Arial",
+            fontSize: "48px",
+            fontWeight: "bold",
+            textAlign: "center",
+            WebkitTextStroke: "2px black",
+            textShadow: "2px 2px 0 #000",
             zIndex: 10,
           }}
         >
@@ -74,7 +74,13 @@ export const RemotionRoot: React.FC = () => {
     <>
       <Composition
         id="VideoEditor"
-        component={RemotionVideo}
+        component={() => (
+          <RemotionVideo
+            videoClips={[]}
+            audioClips={[]}
+            textOverlays={[]}
+          />
+        )}
         durationInFrames={60 * 30} // 30 seconds at 60fps
         fps={60}
         width={1920}
@@ -87,4 +93,4 @@ export const RemotionRoot: React.FC = () => {
       />
     </>
   );
-}; 
+};

@@ -13,7 +13,7 @@ export const RemotionRoot = () => {
     <>
       <Composition
         id="VideoEditor"
-        component={RemotionVideo}
+        component={() => <RemotionVideo {...defaultProps} />}
         durationInFrames={60 * 30} // 60 seconds at 30fps
         fps={60}
         width={1920}

@@ -6,6 +6,7 @@ export interface VideoClip {
   endTime: number;
   trimStart: number;
   trimEnd: number;
+  duration: number;
   volume: number;
 }
 
@@ -15,6 +16,9 @@ export interface AudioClip {
   url: string;
   startTime: number;
   endTime: number;
+  trimStart: number;
+  trimEnd: number;
+  duration: number;
   volume: number;
 }
 
@@ -26,7 +30,9 @@ export interface TextOverlay {
     x: number;
     y: number;
   };
-  startTime: number;
+  startTime: number;  
+  trimStart: number;
+  trimEnd: number;
   duration: number;
   color: string;
 }

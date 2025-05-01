@@ -48,7 +48,7 @@ export const VideoEditor: React.FC = () => {
         videoClips.forEach(clip => {
           const video = videoRefs.current[clip.id];
           if (video) {
-            if (newTime >= clip.startTime && newTime <= clip.startTime + clip.duration) {
+            if (newTime >= clip.startTime && newTime <= clip.startTime + clip.trimStart - clip.startTime + clip.trimEnd - clip.trimStart) {
               if (video.paused) {
                 // Calculate the video time based on trim values
                 const clipProgress = newTime - clip.startTime;
@@ -73,7 +73,7 @@ export const VideoEditor: React.FC = () => {
         audioClips.forEach(clip => {
           const audio = audioRefs.current[clip.id];
           if (audio) {
-            if (newTime >= clip.startTime && newTime <= clip.startTime + clip.duration) {
+            if (newTime >= clip.startTime && newTime <= clip.endTime - clip.startTime) {
               if (audio.paused) {
                 audio.currentTime = newTime - clip.startTime;
                 // Ensure volume is a valid number between 0 and 1
@@ -121,6 +121,7 @@ export const VideoEditor: React.FC = () => {
             id: Math.random().toString(),
             type: 'video' as const,
             startTime: 0,
+            endTime: 10,
             duration: 10,
             trimStart: 0,
             trimEnd: 10,
@@ -137,6 +138,7 @@ export const VideoEditor: React.FC = () => {
             type: 'audio' as const,
             startTime: 0,
             duration: 10,
+            endTime: 10,
             url,
             volume: 1
           } as AudioClip,
@@ -487,7 +489,7 @@ export const VideoEditor: React.FC = () => {
 
         // Draw video clips
         for (const clip of videoClips) {
-          if (currentTime >= clip.startTime && currentTime <= clip.startTime + clip.duration) {
+          if (currentTime >= clip.startTime && currentTime <= clip.endTime - clip.startTime) {
             const video = videoRefs.current[clip.id];
             if (video) {
               const clipProgress = currentTime - clip.startTime;
@@ -533,7 +535,7 @@ export const VideoEditor: React.FC = () => {
         audioClips.forEach(clip => {
           const audio = audioRefs.current[clip.id];
           if (audio) {
-            if (currentTime >= clip.startTime && currentTime <= clip.startTime + clip.duration) {
+            if (currentTime >= clip.startTime && currentTime <= clip.endTime - clip.startTime) {
               const desiredTime = currentTime - clip.startTime;
               if (Math.abs(audio.currentTime - desiredTime) > 0.1) {
                 audio.currentTime = desiredTime;
@@ -589,7 +591,7 @@ export const VideoEditor: React.FC = () => {
               left: 0,
               width: '100%',
               height: '100%',
-              display: currentTime >= clip.startTime && currentTime <= clip.startTime + clip.duration ? 'block' : 'none',
+              display: currentTime >= clip.startTime && currentTime <= clip.endTime - clip.startTime ? 'block' : 'none',
             }}
           />
         ))}
