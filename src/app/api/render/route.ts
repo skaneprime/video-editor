@@ -15,7 +15,7 @@ if (!fs.existsSync(CACHE_DIR)) {
 // Force Node.js runtime
 export const runtime = 'nodejs';
 // Increase timeout since video rendering can take time
-export const maxDuration = 300; // 5 minutes
+export const maxDuration = 60; // 5 minutes
 
 export async function POST(req: Request) {
   try {
